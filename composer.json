@@ -77,13 +77,13 @@
     "phpcbf": "vendor/bin/phpcbf",
     "phpcs": "vendor/bin/phpcs",
     "phpmd": "vendor/bin/phpmd ./src text ./phpmd.xml.dist",
-    "phpmetrics": "php -d 'error_reporting=E_ALL ^ E_DEPRECATED' vendor/bin/phpmetrics --config=.phpmetrics.json",
+    "phpmetrics": "php -d 'error_reporting=E_ALL ^ E_DEPRECATED' vendor/bin/phpmetrics --config=phpmetrics.yml",
     "phpstan": "vendor/bin/phpstan analyse -c phpstan.neon.dist",
     "phpunit": [
       "@phpunit:all",
       "@infection"
     ],
-    "phpunit:all": "vendor/bin/phpunit --coverage-text --coverage-cobertura ${COVERAGE_DIR:-build/coverage}/cobertura.xml --coverage-clover ${COVERAGE_DIR:-build/coverage}/clover.xml",
+    "phpunit:all": "vendor/bin/phpunit --log-junit ${COVERAGE_DIR:-build/logs}/junit.xml --coverage-text  --coverage-html ${DOCS_DIR:-docs}/coverage  --coverage-cobertura ${COVERAGE_DIR:-build/coverage}/cobertura.xml --coverage-clover ${COVERAGE_DIR:-build/coverage}/clover.xml",
     "psalm": "vendor/bin/psalm",
     "psalm:fix": "vendor/bin/psalm --alter --issues=all --dry-run",
     "quality": [

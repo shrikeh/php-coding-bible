@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="@package_version@" timestamp="2023-02-08T12:04:45+00:00">
+  <file name="Shrikeh\Standards\Sniffs\Traits\">
+    <violation beginline="1" rule="Stable Abstractions Principle" ruleset="Stable Abstractions Principle" externalInfoUrl="http://www.phpmetrics.org/documentation/index.html" priority="3">Packages should be either abstract and stable or concrete and instable.
+
+This package is instable and abstract.</violation>
+  </file>
+</pmd>

@@ -2,12 +2,12 @@ ARG PHP_IMAGE_APP_VERSION="fpm-alpine3.15"
 
 FROM "php:${PHP_IMAGE_APP_VERSION}" as base
 RUN apk update
-RUN apk add gcc autoconf icu-dev
+RUN apk add gcc autoconf icu-dev yaml-dev
 RUN apk add --no-cache --virtual .phpize-deps ${PHPIZE_DEPS}
-RUN pecl install -o -f ds pcov pcntl posix
+RUN pecl install -o -f ds pcov pcntl posix yaml
 RUN docker-php-ext-configure intl
 RUN docker-php-ext-install bcmath intl
-RUN docker-php-ext-enable opcache ds pcov bcmath
+RUN docker-php-ext-enable opcache ds pcov bcmath yaml
 
 FROM base AS composer
 WORKDIR /composer
@@ -66,7 +66,7 @@ COPY --from=shrikeh /shrikeh /shrikeh
 RUN composer validate
 RUN chown -R www-data:www-data /shrikeh
 
-FROM app as kata
+FROM app as coding-bible
 ENV GITHUB_TOKEN="${GITHUB_TOKEN}"
 #RUN pecl install xdebug
 RUN apk add git
