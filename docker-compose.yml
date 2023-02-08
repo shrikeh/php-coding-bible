@@ -1,0 +1,13 @@
+---
+version: '3.9'
+services:
+  coding-bible:
+    build:
+      context: ./
+      dockerfile: dev/docker/services/php/Dockerfile
+      args:
+        GITHUB_TOKEN: "${GITHUB_TOKEN?err}"
+    environment:
+      GITHUB_TOKEN: "${GITHUB_TOKEN?err}"
+    volumes:
+      - ./:/shrikeh

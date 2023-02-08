@@ -1,0 +1,17 @@
+{
+  "$schema": "vendor/infection/infection/resources/schema.json",
+  "source": {
+    "directories": [
+      "Shrikeh"
+    ]
+  },
+  "logs": {
+    "text": "build/logs/infection.log",
+    "stryker": {
+      "report": "main"
+    }
+  },
+  "mutators": {
+    "@default": true
+  }
+}

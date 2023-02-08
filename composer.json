@@ -1,0 +1,98 @@
+{
+  "name": "shrikeh/php-coding-bible",
+  "description": "PHP Coding bible and associated sniffs",
+  "type": "phpcodesniffer-standard",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Barney Hanlon"
+    }
+  ],
+  "require": {
+    "php": ">=8.1",
+    "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2",
+    "shrikeh/testing-metapackage": "^0.2.0",
+    "slevomat/coding-standard": "^8.4",
+    "squizlabs/php_codesniffer": "^3.7"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-latest",
+    "symfony/dotenv": "^6.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Shrikeh\\Standards\\": "Shrikeh"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\Unit\\": "tests/unit/src",
+      "Tests\\Utils\\": "tests/utils/src",
+      "Tests\\Mock\\": "tests/mocks/src"
+    },
+    "classmap": [
+      "vendor/squizlabs/php_codesniffer/src/"
+    ]
+  },
+  "config": {
+    "allow-plugins": {
+      "infection/extension-installer": true,
+      "phpstan/extension-installer": true,
+      "ergebnis/composer-normalize": true,
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    },
+    "preferred-install": {
+      "*": "dist"
+    },
+    "sort-packages": true
+  },
+  "extra": {
+    "composer-normalize": {
+      "indent-size": 2,
+      "indent-style": "space"
+    }
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "@install-codestandards"
+    ],
+    "behat": "vendor/bin/behat --format progress --format pretty",
+    "craft": [
+      "@test",
+      "@quality"
+    ],
+    "fix": [
+      "@phpcbf",
+      "@psalm:fix",
+      "@composer normalize"
+    ],
+    "infection": "php vendor/bin/infection --show-mutations --threads=8  --min-covered-msi=${MIN_COVERED_MSI:-100} --min-msi=${MIN_MSI:-100}",
+    "install-codestandards": [
+      "Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run"
+    ],
+    "metrics": [
+      "@phpunit:all",
+      "@phpmetrics"
+    ],
+    "phpcbf": "vendor/bin/phpcbf",
+    "phpcs": "vendor/bin/phpcs",
+    "phpmd": "vendor/bin/phpmd ./src text ./phpmd.xml.dist",
+    "phpmetrics": "php -d 'error_reporting=E_ALL ^ E_DEPRECATED' vendor/bin/phpmetrics --config=.phpmetrics.json",
+    "phpstan": "vendor/bin/phpstan analyse -c phpstan.neon.dist",
+    "phpunit": [
+      "@phpunit:all",
+      "@infection"
+    ],
+    "phpunit:all": "vendor/bin/phpunit --coverage-text --coverage-cobertura ${COVERAGE_DIR:-build/coverage}/cobertura.xml --coverage-clover ${COVERAGE_DIR:-build/coverage}/clover.xml",
+    "psalm": "vendor/bin/psalm",
+    "psalm:fix": "vendor/bin/psalm --alter --issues=all --dry-run",
+    "quality": [
+      "@phpcs",
+      "@phpstan",
+      "@psalm"
+    ],
+    "test": [
+      "@phpunit"
+    ]
+  }
+}
