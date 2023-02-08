@@ -1,17 +1,17 @@
 *	text=auto
 
 # Remove all dot files
-/.*         export-ignore
+/.*                 export-ignore
 # Remove development files
-/.editorconfig
-/docker-compose.yml
-/infection.json
-/Makefile
-/phpcs.xml.dist
-/phpmd.xml.dist
-/phpmetrics.yml
-/phpstan.neon.dist
-/phpunit.xml.dist
-/psalm.xml
-/tests      export-ignore
-/dev        export-ignore
+/.editorconfig      export-ignore
+/docker-compose.yml export-ignore
+/infection.json     export-ignore
+/Makefile           export-ignore
+/phpcs.xml.dist     export-ignore
+/phpmd.xml.dist     export-ignore
+/phpmetrics.yml     export-ignore
+/phpstan.neon.dist  export-ignore
+/phpunit.xml.dist   export-ignore
+/psalm.xml          export-ignore
+/tests              export-ignore
+/dev                export-ignore
