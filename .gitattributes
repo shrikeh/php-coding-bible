@@ -1,0 +1,7 @@
+*	text=auto
+
+# Remove all dot files
+/.*         export-ignore
+/*.*        export-ignore
+/tests      export-ignore
+/dev        export-ignore
