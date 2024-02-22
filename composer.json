@@ -11,7 +11,7 @@
   "require": {
     "php": ">=8.1",
     "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2",
-    "shrikeh/testing-metapackage": "^0.2.0",
+    "shrikeh/testing-metapackage": "*",
     "slevomat/coding-standard": "^8.4",
     "squizlabs/php_codesniffer": "^3.7"
   },
