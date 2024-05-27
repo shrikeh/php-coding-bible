@@ -15,7 +15,7 @@
     "squizlabs/php_codesniffer": "^3.7"
   },
   "require-dev": {
-    "ext-debug": "*",
+    "ext-xdebug": "*",
     "roave/security-advisories": "dev-latest",
     "symfony/dotenv": "^6.2"
   },
@@ -94,5 +94,11 @@
     "test": [
       "@phpunit"
     ]
-  }
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/shrikeh/testing-metapackage"
+    }
+  ]
 }
