@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<!-- https://phpunit.readthedocs.io/en/latest/configuration.html -->
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd"
+         bootstrap="tests/bootstrap.php"
+         cacheResultFile="build/cache/.phpunit.result.cache"
+         cacheResult="true"
+         executionOrder="random"
+         beStrictAboutOutputDuringTests="true"
+         failOnRisky="true"
+         failOnWarning="true"
          backupGlobals="false"
          colors="true"
-         bootstrap="tests/bootstrap.php"
-         cacheResult="true"
-         cacheResultFile="build/cache/.phpunit.result.cache"
-         convertDeprecationsToExceptions="false"
-         executionOrder="random"
 >
     <php>
         <ini name="display_errors" value="1" />
@@ -19,21 +19,22 @@
         <server name="SYMFONY_PHPUNIT_REMOVE" value="" />
         <server name="SYMFONY_PHPUNIT_VERSION" value="9.5" />
     </php>
-
     <testsuites>
         <testsuite name="Coding Bible Test Suite">
             <directory>tests/unit/src</directory>
         </testsuite>
     </testsuites>
 
-    <coverage processUncoveredFiles="true">
+    <source restrictDeprecations="true" restrictNotices="true" restrictWarnings="true">
+        <include>
+            <directory>Shrikeh</directory>
+        </include>
+    </source>
+    <coverage includeUncoveredFiles="true" pathCoverage="true">
         <report>
             <clover outputFile="build/coverage/clover.xml"/>
             <text outputFile="build/coverage/coverage.txt" showUncoveredFiles="true" showOnlySummary="false"/>
             <xml outputDirectory="build/coverage/coverage-xml" />
         </report>
-        <include>
-            <directory suffix=".php">Shrikeh</directory>
-        </include>
     </coverage>
 </phpunit>

@@ -42,7 +42,7 @@ infection:
 	$(MAKE) .composer-install;
 
 .test:
-	$(info [+] Make: 'Running all tests defined in `composer test`)
+	$(info [+] Make: 'Running all tests defined in `composer test')
 	$(MAKE) .composer-test;
 
 .quality:

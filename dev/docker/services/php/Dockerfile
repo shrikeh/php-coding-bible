@@ -37,8 +37,8 @@ ADD ./.env ./
 ADD ./composer.json ./
 ADD ./composer.lock ./
 ADD ./Shrikeh ./Shrikeh
+ADD ./auth.json ./
 
-RUN ${LOCAL_BIN_PATH}/composer config --global --auth github-oauth.github.com ${GITHUB_TOKEN}
 RUN ${LOCAL_BIN_PATH}/composer install
 
 # Copy only the files from before, leaving before dependencies such as composer and git
@@ -67,8 +67,9 @@ RUN composer validate
 RUN chown -R www-data:www-data /shrikeh
 
 FROM app as coding-bible
-ENV GITHUB_TOKEN="${GITHUB_TOKEN}"
-#RUN pecl install xdebug
+ENV XDEBUG_MODE=coverage
+RUN apk add --update linux-headers
+RUN pecl install xdebug
 RUN apk add git
-
+RUN docker-php-ext-enable xdebug
 ENTRYPOINT ${LOCAL_BIN_PATH}/composer test

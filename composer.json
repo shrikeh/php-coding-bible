@@ -9,13 +9,13 @@
     }
   ],
   "require": {
-    "php": ">=8.1",
-    "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2",
-    "shrikeh/testing-metapackage": "*",
+    "php": ">=8.2",
+    "shrikeh/testing-metapackage": ">=0.3",
     "slevomat/coding-standard": "^8.4",
     "squizlabs/php_codesniffer": "^3.7"
   },
   "require-dev": {
+    "ext-debug": "*",
     "roave/security-advisories": "dev-latest",
     "symfony/dotenv": "^6.2"
   },
@@ -83,7 +83,7 @@
       "@phpunit:all",
       "@infection"
     ],
-    "phpunit:all": "vendor/bin/phpunit --log-junit ${COVERAGE_DIR:-build/logs}/junit.xml --coverage-text  --coverage-html ${DOCS_DIR:-docs}/coverage  --coverage-cobertura ${COVERAGE_DIR:-build/coverage}/cobertura.xml --coverage-clover ${COVERAGE_DIR:-build/coverage}/clover.xml",
+    "phpunit:all": "php -d 'xdebug.coverage=1' -d 'xdebug.mode=coverage' vendor/bin/phpunit --path-coverage --log-junit ${COVERAGE_DIR:-build/logs}/junit.xml --coverage-text  --coverage-html ${DOCS_DIR:-docs}/coverage  --coverage-cobertura ${COVERAGE_DIR:-build/coverage}/cobertura.xml --coverage-clover ${COVERAGE_DIR:-build/coverage}/clover.xml",
     "psalm": "vendor/bin/psalm",
     "psalm:fix": "vendor/bin/psalm --alter --issues=all --dry-run",
     "quality": [

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Utils;
 
-final class Constants
+final readonly class Constants
 {
 
     public static function rootDir(): string

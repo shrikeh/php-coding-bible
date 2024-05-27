@@ -41,10 +41,9 @@ mac:
 	direnv allow;
 
 setup: ENV_LOCAL = 'dev'
-setup: .test-env .direnv mac init
+setup: .direnv mac init
 
-init: .test-env .init example
-example: .example .craft
-test: .test-env .test
+init: .init example
+test:  .test
 quality: .test-env .quality
 craft: .crafting .craft

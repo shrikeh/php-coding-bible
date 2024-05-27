@@ -6,8 +6,6 @@ services:
       context: ./
       dockerfile: dev/docker/services/php/Dockerfile
       args:
-        GITHUB_TOKEN: "${GITHUB_TOKEN?err}"
-    environment:
-      GITHUB_TOKEN: "${GITHUB_TOKEN?err}"
+        - "PHP_IMAGE_APP_VERSION=fpm-alpine3.20"
     volumes:
       - ./:/shrikeh
