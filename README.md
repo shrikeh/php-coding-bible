@@ -241,6 +241,18 @@ There are two main reasons to follow the `public readonly` approach:
 - Brevity - The first code snippet above is much shorter than the second. It's fewer lines of code to write, and more readable too.
 - Saves on unit testing - In a project with a minimum code coverage expectation, it would be necessary to unit test all methods including getters. Whilst this is a trivial test to write, no test is required with the `public readonly` approach.
 
+Better still, make the entire _class_ readonly wherever possible:
+
+```php
+final readonly class Foo
+{
+    public function __construct(
+        public string $bar
+    ) {
+    }
+}
+```
+
 ### New is Evil
 There are only a few things that should create other things:
 
@@ -259,7 +271,7 @@ Now, an implementation that essentially handles the query and Exception handling
 
 ```php
 
-final class DBCustomerDetailsRepository implements CustomerDetailsRepository
+final readonly class DBCustomerDetailsRepository implements CustomerDetailsRepository
 {
     public function __construct(private Client $client, private CustomerDetailsFactory $customerDetailsFactory)
     {
