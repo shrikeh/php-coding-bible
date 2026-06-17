@@ -6,6 +6,10 @@ This repository contains the PHP Coding Bible — a set of principles and practi
 
 A human-readable guide for PHP engineers. The `README.md` is the single source of truth. This file exists to help agents work on the document itself, and to provide a machine-readable summary of its rules for agents in other projects that adopt these standards.
 
+Reusable agent skills live in [`skills/`](skills/). To execute a skill, read the relevant file and follow its steps.
+
+- [`skills/php-coding-standards.md`](skills/php-coding-standards.md) — distilled PHP coding directives; load when writing or reviewing PHP code in any project following these standards
+
 ## Maintaining the document
 
 When editing the README:
