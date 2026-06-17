@@ -201,7 +201,7 @@ final readonly class Foo
 }
 ```
 However, a more useful name (rather than `setX`) is `with` ([_Wither_][wither]) pattern):
-
+```php
 final readonly class Foo
 {
     public function withBar(string $bar): self
