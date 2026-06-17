@@ -10,13 +10,14 @@
   ],
   "require": {
     "php": ">=8.2",
-    "shrikeh/testing-metapackage": ">=0.3",
+
     "slevomat/coding-standard": "^8.4",
     "squizlabs/php_codesniffer": "^4.0"
   },
   "require-dev": {
     "ext-xdebug": "*",
     "roave/security-advisories": "dev-latest",
+    "shrikeh/testing-metapackage": ">=0.3",
     "symfony/dotenv": "^8.0"
   },
   "autoload": {
