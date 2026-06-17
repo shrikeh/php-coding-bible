@@ -182,6 +182,10 @@ final readonly class DbalCustomerRegistryRepository
 ```
 Concerned the above doesn't return an ID? Why do you need one - your application has already specified the UID ahead of time via the use of UUIDv5 or UUIDv6.
 
+### Expected failure should be unexceptional
+
+That said, not every failure is exceptional. PHP's union types exist for a reason: a customer not being found is not surprising, a payment being declined is part of the normal flow, and a search returning no results is entirely expected. For these cases, an explicit return type — `CustomerDetails|null`, or a dedicated result value object — forces the caller to handle the failure path at compile time rather than discovering a missing catch in production. Reserve exceptions for things that genuinely _shouldn't_ happen; use the type system for things that _might_.
+
 ### Comments are a code smell
 
   Think about it: why is your code so complex you need to explain it? Strong variable names and typing, combined with equally strong method names and brevity, should not require War & Peace to describe them. Functional testing with Gherkin, combined with unit testing obeying the principle of Specification By Example, should provide enough information.
