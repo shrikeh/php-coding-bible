@@ -135,7 +135,7 @@ final readonly class ContactDetails
     
     }
     
-    // ... getters
+    // ... accessors
 }
 ```
 
@@ -288,7 +288,7 @@ Let's imagine a database repository matching the following contract:
 ```php
 interface CustomerDetailsRepository
 {
-    public function fetchCustomerDetails(CustomerId $customerId): CustomerDetails;
+    public function fetchCustomerDetails(CustomerId $customerId): CustomerDetails|null;
 }
 ```
 Now, an implementation that essentially handles the query and Exception handling, without having to know how to create the `CustomerDetails`:
