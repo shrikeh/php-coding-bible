@@ -257,9 +257,8 @@ echo $foo->getBar(); // sample string
 
 #### Why?
 
-There are two main reasons to follow the `public readonly` approach:
-- Brevity - The first code snippet above is much shorter than the second. It's fewer lines of code to write, and more readable too.
-- Saves on unit testing - In a project with a minimum code coverage expectation, it would be necessary to unit test all methods including getters. Whilst this is a trivial test to write, no test is required with the `public readonly` approach.
+The principal reason is honesty: a getter that simply returns $this->bar adds no behaviour; it is ceremony. `public readonly` is explicit about what it is — a value — whereas a getter implies there might be logic within it, creating a false impression in the reader's mind. 
+There is one trade-off worth knowing: public readonly bakes the property name into every caller. If the internal representation later needs to change — the property is renamed, or its value becomes computed rather than stored — that is now a breaking change. For stable value objects this is rarely a concern; for classes whose internal representation is likely to evolve, a method provides a seam to absorb that change. Use your judgement.     
 
 Better still, make the entire _class_ readonly wherever possible:
 
@@ -272,6 +271,7 @@ final readonly class Foo
     }
 }
 ```
+Just a note that, should you use getters because direct property access is undesirable (say, to match an interface) `get` can infer `set`. There isn't much need to name a method `getAddress()` over just calling it `address()` - from the caller's perspective, it is irrelevant if the value returned was a property, calculated or fetched from some store, so the `get` part of the method name adds nothing.
 
 ### New is Evil
 There are only a few things that should create other things:
