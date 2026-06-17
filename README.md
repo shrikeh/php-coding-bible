@@ -72,7 +72,7 @@ class Refund
 }
 
 # Good
-final class Refund
+final readonly class Refund
 {
     public function __construct(private float $amount)
     {
@@ -89,7 +89,7 @@ final class Refund
 In the case where an object could be created from multiple types of data, it's better to make the `__construct()` method private and instead use _Static Named Constructors_. The static methods can then normalize the data, while the true constructor validates it:
 
 ```php
-final class PdfPath
+final readonly class PdfPath
 {
     public static function fromString(string $path): self
     {
@@ -123,7 +123,7 @@ A simple Aggregate example for use within a `Customer`:
 ```php
 namespace Shrikeh\Customer;
 
-final class ContactDetails
+final readonly class ContactDetails
 {
     public function __construct(
         private Address $address, 
@@ -163,7 +163,7 @@ Classes should do what is expected of them or throw a specific Exception. Don't 
 Remember: if you are relying on a collaborator, and it throws an Exception to use the previous Exception:
 
 ```php
-final class DbalCustomerRegistryRepository
+final readonly class DbalCustomerRegistryRepository
 {
 //...
     public function registerCustomer(Customer $customer): void
@@ -176,7 +176,7 @@ final class DbalCustomerRegistryRepository
     }
 }
 ```
-Concerned the above doesn't return an ID? Why do you need one, your application has already specified the UID ahead of time via the use of UUIDv5 or UUIDv6.
+Concerned the above doesn't return an ID? Why do you need one - your application has already specified the UID ahead of time via the use of UUIDv5 or UUIDv6.
 
 ### Comments are a code smell
 
@@ -187,7 +187,7 @@ Objects should be immutable, and created in a specific state which they carry fo
 If you must use `set`, it should return a new instance with the new value and leave the original unchanged:
 
 ```php
-final class Foo
+final readonly class Foo
 {
     public function setBar(string $bar): self
     {
@@ -195,6 +195,17 @@ final class Foo
     }
 }
 ```
+However, a more useful name (rather than `setX`) is `with` ([_Wither_][wither]) pattern):
+
+final readonly class Foo
+{
+    public function withBar(string $bar): self
+    {
+        return new self($bar);
+    }
+}
+```
+
 
 ### Get is Evil
 Or at least, getters are not necessary for simply returning property values from PHP 8.1, following the addition of `public readonly` properties:
@@ -321,7 +332,7 @@ If only you had written it like this:
 ```php
 final class AwesomeAlgorithm
 {
-    private const LONG_TERM_VOLATILITY_YIELD = 2.17;
+    private const float LONG_TERM_VOLATILITY_YIELD = 2.17;
 
     public function calc(float $marketVolatility, float $weight): float
     {
@@ -425,3 +436,4 @@ So practice safe coding and always use `declare(strict_types=1);`
 [clean-code]: https://github.com/jupeter/clean-code-php
 [law-of-demeter]: https://en.wikipedia.org/wiki/Law_of_Demeter
 [enums]: https://www.php.net/manual/en/language.enumerations.overview.php
+[wither]: https://www.sonarsource.com/blog/builders-withers-and-records-java-s-path-to-immutability/#the-wither-approach
