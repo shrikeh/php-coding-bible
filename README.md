@@ -112,6 +112,8 @@ final readonly class PdfPath
 
 ### The "Rule" Of Three
 
+It's "Rule" rather than a _Rule_, because it's more like _The Pirate's Code_. 
+
 A method, including a constructor, should have a maximum of three arguments to it.
 
 ### Collaboration is Key
@@ -155,6 +157,8 @@ $address = $customer->getProfile()->getHomeAddress();
 # Good
 $address = $customer->getHomeAddress();
 ```
+
+However, be mindful of _delegate wrecks_, where the external object has to have many methods to delegate to the underlying object. In such cases, it may be better to refactor, as the smell is in what the object is being asked.
 
 ### Failure should be exceptional
 
