@@ -155,7 +155,7 @@ The _[Law of Demeter][law-of-demeter]_ is a principle of least knowledge; that i
 $address = $customer->getProfile()->getHomeAddress();
 
 # Good
-$address = $customer->getHomeAddress();
+$address = $customer->homeAddress();
 ```
 
 However, be mindful of _delegate wrecks_, where the external object has to have many methods to delegate to the underlying object. In such cases, it may be better to refactor, as the smell is in what the object is being asked.
@@ -302,7 +302,7 @@ final readonly class DBCustomerDetailsRepository implements CustomerDetailsRepos
         
     }
 
-    public function fetchCustomerDetails(CustomerId $customerId): CustomerDetails
+    public function fetchCustomerDetails(CustomerId $customerId): CustomerDetails|null
     {
         try {
             $row = $this->queryCustomerDetails($customerId);
