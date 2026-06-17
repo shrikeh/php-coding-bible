@@ -180,19 +180,12 @@ Concerned the above doesn't return an ID? Why do you need one - your application
 
 ### Comments are a code smell
 
-  Think about it: why is your code so complex you need to explain it? Strong variable names and typing, combined with equally strong method names and brevity, should  
-  not require War & Peace to describe them. Functional testing with Gherkin, combined with unit testing obeying the principle of Specification By Example, should      
-  provide enough information.                                                                                                                                          
-                                                                                                                                                                       
-  There is, however, a meaningful distinction between comments that describe what code does and comments that capture why it exists. The former is the smell: if the   
-  code cannot speak for itself, fix the code. The latter is professional due diligence. A hidden regulatory constraint, a workaround for a third-party library bug, a  
-  non-obvious invariant that will silently break under an apparently sensible refactor — no amount of expressive naming conveys these, and no test will warn the next  
-  developer they are about to violate them.                                                                                                                            
-                                                                                                                                                                       
-  Deleting that context is how you rediscover the same problem two years later and wonder why on earth anyone wrote it that way.                                       
-                                                                                                                                                                       
-  The rule: never comment _what_. Be diligent about commenting _why_ — if the reason would not be immediately apparent to a competent reader approaching the code cold,    
-  write it down.
+  Think about it: why is your code so complex you need to explain it? Strong variable names and typing, combined with equally strong method names and brevity, should not require War & Peace to describe them. Functional testing with Gherkin, combined with unit testing obeying the principle of Specification By Example, should provide enough information.
+  
+  There is, however, a meaningful distinction between comments that describe what code does and comments that capture why it exists. The former is the smell: if the code cannot speak for itself, fix the code. The latter is professional due diligence. A hidden regulatory constraint, a workaround for a third-party library bug, a non-obvious invariant that will silently break under an apparently sensible refactor — no amount of expressive naming conveys these, and no test will warn the next developer they are about to violate them. 
+  
+Deleting that context is how you rediscover the same problem two years later and wonder why on earth anyone wrote it that way.                                       
+The rule: never comment _what_. Be diligent about commenting _why_ — if the reason would not be immediately apparent to a competent reader approaching the code cold, write it down.
 
 ### Set is Evil
 Objects should be immutable, and created in a specific state which they carry for their lifetime.
